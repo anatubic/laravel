@@ -15,4 +15,12 @@ class Product extends Model
         'day_of_purchase',
         'shade'
     ];
+
+    public function product(){
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

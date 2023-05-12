@@ -14,4 +14,12 @@ class Brand extends Model
         'year_of_launch',
         'headquarters'
     ];
+
+    public function brand(){
+        return $this->belongsTo(Founder::class);
+    }
+
+    public function brands(){
+        return $this->hasMany(Product::class);
+    }
 }

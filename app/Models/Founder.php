@@ -15,4 +15,8 @@ class Founder extends Model
         'profession'
     ];
 
+    public function founders(){
+        return $this->hasMany(Brand::class);
+    }
+
 }
