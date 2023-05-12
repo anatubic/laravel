@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Founder extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'year_of_birth',
+        'profession'
+    ];
+
 }
