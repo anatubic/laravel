@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FounderController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FounderBrandController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +39,9 @@ Route::get('/products/{id}', [ProductController::class, 'show']);
 /*Route::resource('products', ProductController::class);
 Route::resource('founders', FounderController::class);
 Route::resource('brands', BrandController::class);*/
+
+Route::get('/founders/{id}/brands', [FounderBrandController::class, 'index']);
+//Route::resource('users.posts', FounderBrandController::class)->only(['index']);
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);

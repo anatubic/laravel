@@ -40,11 +40,31 @@ class DatabaseSeeder extends Seeder
             'profession'=>'singer'
         ]);
 
+        $f2 = Founder::create([
+            'name'=>"Kylie Jenner",
+            'year_of_birth'=>1997,
+            'profession'=>'entrepeneur'
+        ]);
+
         $b1 = Brand::create([
             'name'=>'Fenty Beauty',
             'year_of_launch'=> 2017,
             'headquarters' =>'San Francisco',
             'founder_id'=>$f1->id,
+        ]);
+
+        $b2 = Brand::create([
+            'name'=>'Kylie Cosmetics',
+            'year_of_launch'=> 2015,
+            'headquarters' =>'Oxnard',
+            'founder_id'=>$f2->id,
+        ]);
+
+        $b3 = Brand::create([
+            'name'=>'Kylie Skin',
+            'year_of_launch'=> 2019,
+            'headquarters' =>'Oxnard',
+            'founder_id'=>$f2->id,
         ]);
 
         $p1 = Product::create([
@@ -59,7 +79,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Lipstick',
             'description' => 'The true matte formula glides on effortlessly and offers 8-hour wear without drying lips',
             'shade' => 'red',
-            'brand_id'=>$b1->id,
+            'brand_id'=>$b2->id,
             'user_id'=>$u4->id
         ]);
 
