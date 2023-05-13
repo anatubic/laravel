@@ -9,11 +9,13 @@ class Brand extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    /* protected $fillable = [
         'name',
         'year_of_launch',
         'headquarters'
-    ];
+    ]; */
+
+    protected $guarded = [];
 
     public function brand(){
         return $this->belongsTo(Founder::class);
