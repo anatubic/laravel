@@ -21,17 +21,47 @@ class DatabaseSeeder extends Seeder
         Brand::Truncate();
         Product::Truncate();
 
-        User::factory(3)->create();
+        $user = User::factory(3)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call([
-            FounderSeeder::class,
-            BrandSeeder::class,
-            ProductSeeder::class,
+        $u4 = User::create([
+            'name'=>'Ana',
+            'email'=>'ana@gmail.com',
+            'password'=>bcrypt('ana123')
         ]);
+
+        $f1 = Founder::create([
+            'name'=>"Rihanna",
+            'year_of_birth'=>1988,
+            'profession'=>'singer'
+        ]);
+
+        $b1 = Brand::create([
+            'name'=>'Fenty Beauty',
+            'year_of_launch'=> 2017,
+            'headquarters' =>'San Francisco',
+            'founder_id'=>$f1->id,
+        ]);
+
+        $p1 = Product::create([
+            'name'=>'Foundation',
+            'description'=>'A soft matte, longwear foundation that features climate-adaptive technology to fight heat, sweat + shine',
+            'shade'=>'nude',
+            'brand_id'=>$b1->id,
+            'user_id'=>$u4->id
+        ]);
+
+        $p2 = Product::create([
+            'name' => 'Lipstick',
+            'description' => 'The true matte formula glides on effortlessly and offers 8-hour wear without drying lips',
+            'shade' => 'red',
+            'brand_id'=>$b1->id,
+            'user_id'=>$u4->id
+        ]);
+
     }
 }
