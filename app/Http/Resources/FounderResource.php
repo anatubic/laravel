@@ -16,12 +16,11 @@ class FounderResource extends JsonResource
     
     public function toArray(Request $request)
     {
-        //return parent::toArray($request);
         return[
             'id'=>$this->resource->id,
             'name'=>$this->resource->name,
             'year of birth'=>$this->resource->year_of_birth,
-            'profession'=>$this->resource->profession
+            'occupation'=>$this->resource->occupation
         ];
     }
 }

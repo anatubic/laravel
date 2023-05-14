@@ -19,10 +19,12 @@ class ProductResource extends JsonResource
         return[
             'id'=>$this->resource->id,
             'name'=>$this->resource->name,
+            'shade'=>$this->resource->shade,
             'description'=>$this->resource->description,
+            'purchased at'=>$this->resource->purchased_at,
+            'day of purchase'=>$this->resource->day_of_purchase,
             'brand'=>new BrandResource($this->resource->brand),
             'user'=>new UserResource($this->resource->user)
         ];
-        //return parent::toArray($request);
     }
 }

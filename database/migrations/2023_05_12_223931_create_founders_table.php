@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->integer('year_of_birth');
+            $table->integer('years_active');
             $table->timestamps();
         });
     }

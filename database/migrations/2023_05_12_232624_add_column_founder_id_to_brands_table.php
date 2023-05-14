@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('brands', function (Blueprint $table) {
-            $table->foreignId("founder_id")->default(0);
+            $table->after('headquarters', function($table) {
+                $table->foreignId('founder_id')->default(0);
+            });
         });
     }
 
@@ -22,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('brands', function (Blueprint $table) {
-            $table->dropForeign("founder_id");
+            $table->dropForeign('founder_id');
         });
     }
 };

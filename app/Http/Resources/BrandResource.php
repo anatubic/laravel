@@ -4,7 +4,6 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-//use App\Http\Resources\FounderResource;
 
 class BrandResource extends JsonResource
 {
@@ -24,8 +23,6 @@ class BrandResource extends JsonResource
             'year of launch'=>$this->resource->year_of_launch,
             'headquarters'=>$this->resource->headquarters,
             'founder'=>new FounderResource($this->resource->founder)
-        ];
-        //return parent::toArray($request);
-        
+        ];  
     }
 }

@@ -12,7 +12,7 @@ class Founder extends Model
     /* protected $fillable = [
         'name',
         'year_of_birth',
-        'profession'
+        'occupation'
     ]; */
 
     protected $guarded = [];

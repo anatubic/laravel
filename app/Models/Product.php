@@ -12,9 +12,10 @@ class Product extends Model
 
     /* protected $fillable = [
         'name',
+        'shade',
         'description',
-        'day_of_purchase',
-        'shade'
+        'purchased_at',
+        'day_of_purchase'
     ]; */
 
     protected $guarded = [];

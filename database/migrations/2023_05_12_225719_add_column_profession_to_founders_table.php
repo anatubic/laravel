@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('founders', function (Blueprint $table) {
-            $table->string('profession');
+            $table->after('years_active', function($table) {
+                $table->string('profession');
+            });
         });
     }
 

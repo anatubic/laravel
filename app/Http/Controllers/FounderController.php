@@ -13,7 +13,6 @@ class FounderController extends Controller
      */
     public function index()
     {
-        //
         /*$founders = Founder::all();
         return $founders;*/
         return ['founders' => FounderResource::collection(Founder::get())];
@@ -40,13 +39,11 @@ class FounderController extends Controller
      */
     public function show($founder_id)
     {
-        //
         $founder = Founder::find($founder_id);
         if (is_null($founder)) {
             return response()->json('Data not found', 404);
         }
         return new FounderResource($founder);
-        //return new FounderResource($founder);
     }
 
     /**

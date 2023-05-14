@@ -13,7 +13,6 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
         /*$brands = Brand::all();
         return $brands;*/
         return ['brands' => BrandResource::collection(Brand::get())];
@@ -40,13 +39,11 @@ class BrandController extends Controller
      */
     public function show($brand_id)
     {
-        //
         $brand = Brand::find($brand_id);
         if (is_null($brand)) {
             return response()->json('Data not found', 404);
         }
         return new BrandResource($brand);
-        //return new BrandResource($brand);
     }
 
     /**

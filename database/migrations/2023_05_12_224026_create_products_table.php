@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->date('day_of_purchase')->nullable();
+            $table->string('purchased_at');
+            $table->date('day_of_purchase');
             $table->timestamps();
         });
     }
