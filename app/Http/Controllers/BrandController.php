@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
-//use App\Http\Resources\BrandResource;
+use App\Http\Resources\BrandResource;
 
 class BrandController extends Controller
 {
@@ -14,8 +14,9 @@ class BrandController extends Controller
     public function index()
     {
         //
-        $brands = Brand::all();
-        return $brands;
+        /*$brands = Brand::all();
+        return $brands;*/
+        return ['brands' => BrandResource::collection(Brand::get())];
     }
 
     /**
@@ -44,7 +45,7 @@ class BrandController extends Controller
         if (is_null($brand)) {
             return response()->json('Data not found', 404);
         }
-        return response()->json($brand);
+        return new BrandResource($brand);
         //return new BrandResource($brand);
     }
 

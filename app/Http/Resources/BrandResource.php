@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\FounderResource;
+//use App\Http\Resources\FounderResource;
 
 class BrandResource extends JsonResource
 {
@@ -13,6 +13,9 @@ class BrandResource extends JsonResource
      *
      * @return array<string, mixed>
      */
+
+    public static $wrap = 'brand';
+
     public function toArray(Request $request)
     {
         return[

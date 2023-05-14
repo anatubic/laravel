@@ -14,7 +14,7 @@ class FounderResource extends JsonResource
      */
     public static $wrap = 'founder';
     
-     public function toArray(Request $request)
+    public function toArray(Request $request)
     {
         //return parent::toArray($request);
         return[

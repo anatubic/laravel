@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Brand extends Model
 {
@@ -17,11 +18,11 @@ class Brand extends Model
 
     protected $guarded = [];
 
-    public function brand(){
-        return $this->belongsTo(Founder::class);
+    public function founder(){
+        return $this->belongsTo(Founder::class, 'founder_id');
     }
 
-    public function brands(){
+    public function products(){
         return $this->hasMany(Product::class);
     }
 }

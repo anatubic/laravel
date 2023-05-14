@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Founder;
 use Illuminate\Http\Request;
-//use App\Http\Resources\FounderResource;
+use App\Http\Resources\FounderResource;
 
 class FounderController extends Controller
 {
@@ -14,9 +14,9 @@ class FounderController extends Controller
     public function index()
     {
         //
-        $founders = Founder::all();
-        return $founders;
-        //return FounderResource::collection($founders);
+        /*$founders = Founder::all();
+        return $founders;*/
+        return ['founders' => FounderResource::collection(Founder::get())];
     }
 
     /**
@@ -45,7 +45,7 @@ class FounderController extends Controller
         if (is_null($founder)) {
             return response()->json('Data not found', 404);
         }
-        return response()->json($founder);
+        return new FounderResource($founder);
         //return new FounderResource($founder);
     }
 

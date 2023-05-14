@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-//use App\Http\Resources\ProductResource;
+use App\Http\Resources\ProductResource;
+use App\Http\Resources\ProductCollection;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -15,7 +18,7 @@ class ProductController extends Controller
     {
         //
         $products = Product::all();
-        return $products;
+        return new ProductCollection($products);
         //return ProductResource::collection($products);
     }
     /**
@@ -31,7 +34,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description' => 'required',
+            'day_of_purchase' => 'required|date_format:Y-m-d',
+            'shade' => 'required',
+            'brand_id' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
+
+        $product = Product::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'day_of_purchase' => $request->day_of_purchase,
+            'shade' => $request->shade,
+            'brand_id' => $request->brand_id,
+            'user_id' => Auth::user()->id
+        ]);
+
+        return response()->json(['Success.', new ProductResource($product)]);
     }
 
     /**
@@ -44,7 +69,7 @@ class ProductController extends Controller
         if (is_null($product)) {
             return response()->json('Data not found', 404);
         }
-        return response()->json($product);
+        return new ProductResource($product);
         //return new ProductResource($product);
     }
 
@@ -59,16 +84,42 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, int $product_id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'description' => 'required',
+            'day_of_purchase' => 'required|date_format:Y-m-d',
+            'brand_id' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
+
+        $product = Product::find($product_id);
+        $product->description = $request->description;
+        $product->day_of_purchase = $request->day_of_purchase;
+        $product->brand_id = $request->brand_id;
+        $product->user_id = $request->user_id;
+
+        $product->save();
+
+        return response()->json(['Updated.', new ProductResource($product)]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(int $product_id)
     {
         //
+        $product = Product::findOrFail($product_id);
+        if (is_null($product)) {
+            return response()->json('It does not exist', 404);
+        }
+        $product->delete();
+
+        return response()->json(['Success.']);
     }
 }

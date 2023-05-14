@@ -17,7 +17,7 @@ class Founder extends Model
 
     protected $guarded = [];
 
-    public function founders(){
+    public function brands(){
         return $this->hasMany(Brand::class);
     }
 
