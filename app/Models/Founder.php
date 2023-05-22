@@ -9,13 +9,13 @@ class Founder extends Model
 {
     use HasFactory;
 
-    /* protected $fillable = [
+    protected $fillable = [
         'name',
         'year_of_birth',
         'occupation'
-    ]; */
+    ];
 
-    protected $guarded = [];
+    //protected $guarded = [];
 
     public function brands(){
         return $this->hasMany(Brand::class);

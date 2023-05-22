@@ -27,7 +27,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('founders', FounderController::class)->only(['show', 'index']);
 Route::resource('brands', BrandController::class)->only(['show', 'index']);
 Route::resource('products', ProductController::class)->only(['show', 'index']);
-Route::resource('founders.brands', FounderBrandController::class)->only(['index']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -37,6 +36,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         return auth()->user();
     });
 
+    Route::resource('users', UserController::class)->only(['index']);
+    Route::resource('founders.brands', FounderBrandController::class)->only(['index']);
+    
     Route::resource('products', ProductController::class)->only(['update', 'store', 'destroy']);
 
     Route::post('/logout', [AuthController::class, 'logout']);

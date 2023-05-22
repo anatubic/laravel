@@ -10,13 +10,14 @@ class Brand extends Model
 {
     use HasFactory;
 
-    /* protected $fillable = [
+    protected $fillable = [
         'name',
         'year_of_launch',
-        'headquarters'
-    ]; */
+        'headquarters',
+        'founder_id'
+    ];
 
-    protected $guarded = [];
+    //protected $guarded = [];
 
     public function founder(){
         return $this->belongsTo(Founder::class, 'founder_id');

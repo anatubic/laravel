@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Founder;
 use Illuminate\Http\Request;
 use App\Http\Resources\FounderResource;
+use App\Http\Resources\FounderCollection;
 
 class FounderController extends Controller
 {
@@ -15,7 +16,9 @@ class FounderController extends Controller
     {
         /*$founders = Founder::all();
         return $founders;*/
-        return ['founders' => FounderResource::collection(Founder::get())];
+        //return ['founders' => FounderResource::collection(Founder::get())];
+        $founders = Founder::all();
+        return new FounderCollection($founders);
     }
 
     /**

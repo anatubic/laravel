@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Http\Resources\BrandResource;
+use App\Http\Resources\BrandCollection;
 
 class BrandController extends Controller
 {
@@ -15,7 +16,9 @@ class BrandController extends Controller
     {
         /*$brands = Brand::all();
         return $brands;*/
-        return ['brands' => BrandResource::collection(Brand::get())];
+        //return ['brands' => BrandResource::collection(Brand::get())];
+        $brands = Brand::all();
+        return new BrandCollection($brands);
     }
 
     /**
