@@ -16,7 +16,6 @@ class BrandController extends Controller
     {
         /*$brands = Brand::all();
         return $brands;*/
-        //return ['brands' => BrandResource::collection(Brand::get())];
         $brands = Brand::all();
         return new BrandCollection($brands);
     }

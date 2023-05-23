@@ -16,7 +16,6 @@ class FounderController extends Controller
     {
         /*$founders = Founder::all();
         return $founders;*/
-        //return ['founders' => FounderResource::collection(Founder::get())];
         $founders = Founder::all();
         return new FounderCollection($founders);
     }

@@ -38,8 +38,7 @@ class ProductController extends Controller
             'description' => 'required',
             'purchased_at' => 'required',
             'day_of_purchase' => 'required|date_format:Y-m-d',
-            'brand_id' => 'required',
-            'user_id' => 'required'
+            'brand_id' => 'required'
         ]);
 
         if($validator->fails()){
@@ -56,7 +55,7 @@ class ProductController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-        return response()->json(['Success.', new ProductResource($product)]);
+        return response()->json(['New product has been created.', new ProductResource($product)]);
     }
 
     /**
@@ -90,8 +89,7 @@ class ProductController extends Controller
             'description' => 'required',
             'purchased_at' => 'required',
             'day_of_purchase' => 'required|date_format:Y-m-d',
-            'brand_id' => 'required',
-            'user_id' => 'required'
+            'brand_id' => 'required'
         ]);
 
         if($validator->fails()){
@@ -105,11 +103,10 @@ class ProductController extends Controller
         $product->purchased_at = $request->purchased_at;
         $product->day_of_purchase = $request->day_of_purchase;
         $product->brand_id = $request->brand_id;
-        $product->user_id = $request->user_id;
 
         $product->save();
 
-        return response()->json(['Updated', new ProductResource($product)]);
+        return response()->json(['Product has been updated', new ProductResource($product)]);
     }
 
     /**
@@ -123,6 +120,6 @@ class ProductController extends Controller
         }
         $product->delete();
 
-        return response()->json(['Success']);
+        return response()->json(['Product has been deleted']);
     }
 }
